@@ -1,18 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+
+//import validator and FormBuilder
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
    selector: 'app-test',
    templateUrl: './test.component.html',
    styleUrls: ['./test.component.css']
 })
+
 export class TestComponent implements OnInit {
-   userName;
-   formdata;
-   ngOnInit() {
-      this.formdata = new FormGroup({
-         userName: new FormControl("Tutorialspoint")
+   //Create FormGroup
+   requiredForm: FormGroup;
+   constructor(private fb: FormBuilder) {
+      this.myForm();
+   }
+
+   //Create required field validator for name
+   myForm() {
+      this.requiredForm = this.fb.group({
+      name: ['', Validators.required ]
       });
    }
-   onClickSubmit(data) {this.userName = data.userName;}
+   ngOnInit()
+   {
+
+   }
 }
